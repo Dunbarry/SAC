@@ -7,7 +7,8 @@ var start=0;
 var OPTracker=0;
 var Level=1;
 var decode=0;
-// var direction="";
+var there="";
+
 
 //Turn Mgt~~~~~~~~~~~~~~~~~~~~~
 function safetySwap(){            //Safety Controls
@@ -28,13 +29,14 @@ function turnSwap(){
     if(turnCount===1){
       spawn();
     }
+    else if(turnCount>=2){
+      moveSelect();
+    }
   }
   else if(turn==="OP"){
     turn="Player"
   }
   safetySwap();
-  console.log(safety);
-  console.log(turn);
 }
 
 // function turnState(){
@@ -84,7 +86,6 @@ $('#bigRed').click(function(){
   if(turn==="Player"){
   rotationDecoder()
   targetCell=($('#degree').val()+"x"+decode)
-  console.log(targetCell)
   fire();
   }
 })
@@ -109,48 +110,69 @@ function startSelect(){
 function OPbeacon(){
   here=($('.standIn').parent()).attr('id');
   for(var seek in here){
-    console.log(here[seek])
   }
 }
 
 function spawn(){                 //Creates an enemy
-  console.log("I am spawning!")
   startSelect()
   OPTracker++;
   $('#80x'+start+'0').append('<div class="standIn" id="'+OPTracker+'"></div>')
   OPbeacon();
 }
 
-// function moveSelect(){
-//   direction=(Math.floor(Math.random()*4))
-//   OPbeacon();
-//   for(var choosing=0;choosing<here.length; choosing++){
-//     next=choosing+1;
-//     if(direction>1){             //Advancing one grid! x2 Likely
-//       if(choosing===0){
-//         here[choosing]=here[choosing]-1;
-//       }
-//     }
-//     else if(direction===1){
-//       if(choosing===3){
-//         if(here[choosing]==="-"){
-//           here[next]=here[next]+1;
-//           if(here[next]=)
-//         }
-//         else{
-//           here[choosing]=here[choosing]+1;
-//         }
-//       }
-//     }
-//     else if(direction){
-//
-//     }
-//   }
-// }
-//
-// function OPmovement(){
-//
-// }
+function moveSelect(){
+  there="";
+  direction=(Math.floor(Math.random()*4))
+  console.log(direction,here);
+  OPbeacon();
+  for(var choosing=0;choosing<here.length; choosing++){
+    next=choosing+1;
+    if(direction>1){             //Advancing one grid! x2 Likely
+      if(choosing===0){
+        newHeading=here[choosing]-1;
+        there+=newHeading;
+      }
+      else{
+        there+=here[choosing]
+      }
+    }
+    else if(direction===1){      //Moving Right!
+      if(choosing===3){
+        if(here[choosing]>=4){
+          newHeading=here[choosing]-1;
+          there+=newHeading
+        }
+        else{
+          newHeading=here[choosing]+1;
+          there+=newHeading;
+        }
+      }
+      else{
+        there+=here[choosing]
+      }
+    }
+    else if(direction===0){     //Moving Left!
+      if(choosing===3){
+        if(here[choosing]===8||here[choosing]<4){
+          newHeading=here[choosing]-1;
+          there+=newHeading;
+        }
+        else{
+          newHeading=here[choosing]+1;
+          there+=newHeading;
+        }
+      }
+      else{
+        there+=here[choosing]
+      }
+    }
+  }
+  console.log(there)
+}
+
+function OPmovement(){
+
+}
 
 //ON load~~~~~~~~~~~~~~~~~~~~~~~
 $(document).ready(function(){
