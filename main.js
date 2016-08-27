@@ -130,7 +130,7 @@ function moveSelect(){
   console.log(direction,here);
   for(var choosing=0;choosing<here.length; choosing++){
     next=choosing+1;
-    if(direction>1){             //Advancing one grid! x3 Likely
+    if(direction>2||direction===1){             //Advancing one grid! x3 Likely
       if(choosing===0){
         newHeading=here[choosing]-1;
         there+=newHeading;
@@ -139,14 +139,14 @@ function moveSelect(){
         there+=here[choosing]
       }
     }
-    else if(direction===1){      //Moving Right!
+    else if(direction===2){      //Moving Right!
       if(choosing===3){
-        if(here[choosing]>=4||here[choosing]>60){
+        if(here[choosing]===5){
+          newHeading=0;
+        }
+        else if(here[choosing]>=4||here[choosing]>6){
           newHeading=(here[choosing]-0)-1;
           there+=newHeading
-        }
-        else if(here[choosing]===5){
-          newHeading=0;
         }
         else if(here[choosing]===0){
           newHeading=(here[choosing]-0)+1;
@@ -163,12 +163,12 @@ function moveSelect(){
     }
     else if(direction===0){     //Moving Left!
       if(choosing===3){
-        if(here[choosing]===8||here[choosing]<4){
-          newHeading=(here[choosing]-0)-1;
+        if(here[choosing]===0){
+          newHeading=(here[choosing]-0)+1;
           there+=newHeading;
         }
-        else if(here[choosing]===0){
-          newHeading=(here[choosing]-0)+1;
+        else if(here[choosing]===8||here[choosing]<4){
+          newHeading=(here[choosing]-0)-1;
           there+=newHeading;
         }
         else{
