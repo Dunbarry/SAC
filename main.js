@@ -6,7 +6,21 @@ var turnCount=0;
 var start=0;
 
 function random(){
-  start=(Math.floor(Math.random()*5))
+  start=(Math.floor(Math.random()*9))
+  switch(start){
+    case start===5:
+      start=(-1);
+      break;
+    case start===6:
+      start=(-2);
+      break;
+    case start===7:
+      start=(-3);
+      break;
+    case start===8:
+      start=(-4);
+      break;
+  }
   console.log(start);
   return start;
 }
@@ -79,7 +93,7 @@ function indicators(){
 //OP rendering~~~~~~~~~~~~~~~~~~
 function spawn(){                 //Creates an enemy
   console.log("I am spawning!")
-  // random()
+  random()
   $('#80x'+start+'0').append(
     '<div class="standIn"></div>')
 }
