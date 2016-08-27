@@ -4,26 +4,10 @@ var turn="Player"
 var safety="OFF"
 var turnCount=0;
 var start=0;
-
-function random(){
-  start=(Math.floor(Math.random()*9))
-  switch(start){
-    case start===5:
-      start=(-1);
-      break;
-    case start===6:
-      start=(-2);
-      break;
-    case start===7:
-      start=(-3);
-      break;
-    case start===8:
-      start=(-4);
-      break;
-  }
-  console.log(start);
-  return start;
-}
+var OPTracker=0;
+var Level=1;
+var decode=0;
+// var direction="";
 
 //Turn Mgt~~~~~~~~~~~~~~~~~~~~~
 function safetySwap(){            //Safety Controls
@@ -40,7 +24,6 @@ function turnSwap(){
   turnCount++;            //Turn Controls
   if(turn==="Player"){
     turn="OP";
-    console.log("Wait for it...")
     setTimeout(turnSwap,4000)
     if(turnCount===1){
       spawn();
@@ -73,9 +56,37 @@ function fire(){
   setTimeout(fireClear,5000)
 }
 
+function rotationDecoder(){
+  code=$('#rotation').val()
+  if($('#rotation').val()<0){
+    switch(code){
+    case "-10":
+      decode=50;
+      break;
+    case "-20":
+      decode=60;
+      break;
+    case "-30":
+      decode=70;
+      break;
+    case "-40":
+      decode=80;
+      break;
+    }
+    return decode;
+  }
+  else{
+    decode=code;
+  }
+}
+
 $('#bigRed').click(function(){
-  targetCell=($('#degree').val()+"x"+$('#rotation').val())
+  if(turn==="Player"){
+  rotationDecoder()
+  targetCell=($('#degree').val()+"x"+decode)
+  console.log(targetCell)
   fire();
+  }
 })
 
 
@@ -91,12 +102,55 @@ function indicators(){
 
 
 //OP rendering~~~~~~~~~~~~~~~~~~
+function startSelect(){
+  start=(Math.floor(Math.random()*9))
+}
+
+function OPbeacon(){
+  here=($('.standIn').parent()).attr('id');
+  for(var seek in here){
+    console.log(here[seek])
+  }
+}
+
 function spawn(){                 //Creates an enemy
   console.log("I am spawning!")
-  random()
-  $('#80x'+start+'0').append(
-    '<div class="standIn"></div>')
+  startSelect()
+  OPTracker++;
+  $('#80x'+start+'0').append('<div class="standIn" id="'+OPTracker+'"></div>')
+  OPbeacon();
 }
+
+// function moveSelect(){
+//   direction=(Math.floor(Math.random()*4))
+//   OPbeacon();
+//   for(var choosing=0;choosing<here.length; choosing++){
+//     next=choosing+1;
+//     if(direction>1){             //Advancing one grid! x2 Likely
+//       if(choosing===0){
+//         here[choosing]=here[choosing]-1;
+//       }
+//     }
+//     else if(direction===1){
+//       if(choosing===3){
+//         if(here[choosing]==="-"){
+//           here[next]=here[next]+1;
+//           if(here[next]=)
+//         }
+//         else{
+//           here[choosing]=here[choosing]+1;
+//         }
+//       }
+//     }
+//     else if(direction){
+//
+//     }
+//   }
+// }
+//
+// function OPmovement(){
+//
+// }
 
 //ON load~~~~~~~~~~~~~~~~~~~~~~~
 $(document).ready(function(){
@@ -104,10 +158,10 @@ $(document).ready(function(){
   while(row>0){
   $('#'+row).append(
     '<div class="row">\
-    <div class="col-md-1" id="'+row+'0x-40"></div>\
-    <div class="col-md-1" id="'+row+'0x-30"></div>\
-    <div class="col-md-1" id="'+row+'0x-20"></div>\
-    <div class="col-md-1" id="'+row+'0x-10"></div>\
+    <div class="col-md-1" id="'+row+'0x80"></div>\
+    <div class="col-md-1" id="'+row+'0x70"></div>\
+    <div class="col-md-1" id="'+row+'0x60"></div>\
+    <div class="col-md-1" id="'+row+'0x50"></div>\
     <div class="col-md-1" id="'+row+'0x00"></div>\
     <div class="col-md-1" id="'+row+'0x10"></div>\
     <div class="col-md-1" id="'+row+'0x20"></div>\
