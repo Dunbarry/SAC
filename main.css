@@ -6,7 +6,7 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  border: .5vw solid lightgrey;
+  border: .1vw solid lightgrey;
   height:4vw;
   width:4vw;
 }
@@ -46,4 +46,11 @@ input{
 
 .impact{
   background-color: red;
+}
+
+.standIn{
+  height: 1vw;
+  width: 1vw;
+  border-radius: 50%;
+  background-color:green;
 }
