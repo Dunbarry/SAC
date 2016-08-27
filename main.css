@@ -1,9 +1,27 @@
-.mainContain
+.mainContain{
+  margin-left: 30%;
+}
+
 .col-md-1{
   display:flex;
   align-items: center;
   justify-content: center;
-  background-color: blue;
+  border: .5vw solid lightgrey;
   height:4vw;
   width:4vw;
+}
+
+.fireControl{
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  /*align-self: flex-end;
+  justify-content: space-around;*/
+  border: .25vw solid red;
+  top:80%;
+  margin-left: 40%;
+  height: 6vw;
+  width:10vw;
 }
