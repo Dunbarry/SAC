@@ -11,17 +11,35 @@
   width:4vw;
 }
 
+/*Helm!~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .fireControl{
   position:absolute;
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
   flex-direction: row;
   /*align-self: flex-end;
   justify-content: space-around;*/
   border: .25vw solid red;
-  top:80%;
+  top:75%;
   margin-left: 40%;
-  height: 6vw;
+  height: 8vw;
   width:10vw;
+}
+
+input{
+  display: flex;
+  margin-left: auto;
+  height:2.5;
+}
+
+.bigRed{
+  position:absolute;
+  display:flex;
+  display: block;
+  height:5vw;
+  width:5vw;
+  top:17.5%;
+  margin-left: 1.5vw;
+  border-radius:50%
 }

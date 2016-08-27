@@ -1,4 +1,12 @@
 console.log('Drone Online');
+var targetCell="";
+//Fire Control~~~~~~~~~~~~~~~~
+$('#bigRed').click(function(){
+  targetCell=($('#degree').val()+"x"+$('#rotation').val())
+  $('#'+targetCell).css('background-color','red');
+})
+
+
 
 $(document).ready(function(){
   var row=8
