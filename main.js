@@ -5,6 +5,7 @@ var safety="OFF"
 var turnCount=0;
 var start=0;
 var OPTracker=0;
+var OPLocation="";
 var Level=1;
 var decode=0;
 var there="";
@@ -30,7 +31,7 @@ function turnSwap(){
       spawn();
     }
     else if(turnCount>=2){
-      moveSelect();
+      OPmovement();
     }
   }
   else if(turn==="OP"){
@@ -109,6 +110,7 @@ function startSelect(){
 
 function OPbeacon(){
   here=($('.standIn').parent()).attr('id');
+  OPlocation=$('.standIn').attr('id')
   for(var seek in here){
   }
 }
@@ -116,7 +118,7 @@ function OPbeacon(){
 function spawn(){                 //Creates an enemy
   startSelect()
   OPTracker++;
-  $('#80x'+start+'0').append('<div class="standIn" id="'+OPTracker+'"></div>')
+  $('#80x'+start+'0').append('<div class="standIn" id="OP'+OPTracker+'"></div>')
   OPbeacon();
 }
 
@@ -171,7 +173,9 @@ function moveSelect(){
 }
 
 function OPmovement(){
-
+  moveSelect()
+  $('#OP1').remove()
+  $('#'+there).append('<div class="standIn" id="OP1"></div>')
 }
 
 //ON load~~~~~~~~~~~~~~~~~~~~~~~
