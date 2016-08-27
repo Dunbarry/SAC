@@ -61,7 +61,7 @@ function fire(){
 
 function rotationDecoder(){
   code=$('#rotation').val()
-  if($('#rotation').val()<0){
+  if(code<0){
     switch(code){
     case "-10":
       decode=50;
@@ -87,6 +87,7 @@ $('#bigRed').click(function(){
   if(turn==="Player"){
   rotationDecoder()
   targetCell=($('#degree').val()+"x"+decode)
+  console.log(targetCell)
   fire();
   }
 })
@@ -124,12 +125,12 @@ function spawn(){                 //Creates an enemy
 
 function moveSelect(){
   there="";
-  direction=(Math.floor(Math.random()*4))
-  console.log(direction,here);
+  direction=(Math.floor(Math.random()*5))
   OPbeacon();
+  console.log(direction,here);
   for(var choosing=0;choosing<here.length; choosing++){
     next=choosing+1;
-    if(direction>1){             //Advancing one grid! x2 Likely
+    if(direction>1){             //Advancing one grid! x3 Likely
       if(choosing===0){
         newHeading=here[choosing]-1;
         there+=newHeading;
@@ -140,12 +141,19 @@ function moveSelect(){
     }
     else if(direction===1){      //Moving Right!
       if(choosing===3){
-        if(here[choosing]>=4){
-          newHeading=here[choosing]-1;
+        if(here[choosing]>=4||here[choosing]>60){
+          newHeading=(here[choosing]-0)-1;
           there+=newHeading
         }
+        else if(here[choosing]===5){
+          newHeading=0;
+        }
+        else if(here[choosing]===0){
+          newHeading=(here[choosing]-0)+1;
+          there+=newHeading;
+        }
         else{
-          newHeading=here[choosing]+1;
+          newHeading=(here[choosing]-0)+1;
           there+=newHeading;
         }
       }
@@ -156,11 +164,15 @@ function moveSelect(){
     else if(direction===0){     //Moving Left!
       if(choosing===3){
         if(here[choosing]===8||here[choosing]<4){
-          newHeading=here[choosing]-1;
+          newHeading=(here[choosing]-0)-1;
+          there+=newHeading;
+        }
+        else if(here[choosing]===0){
+          newHeading=(here[choosing]-0)+1;
           there+=newHeading;
         }
         else{
-          newHeading=here[choosing]+1;
+          newHeading=(here[choosing]-0)+1;
           there+=newHeading;
         }
       }
