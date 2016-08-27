@@ -43,3 +43,7 @@ input{
   margin-left: 1.5vw;
   border-radius:50%
 }
+
+.impact{
+  background-color: red;
+}
