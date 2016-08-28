@@ -129,14 +129,17 @@ function startSelect(){
 }
 
 function OPbeacon(){
-  here=($('.standIn').parent()).attr('id');
+  here=$('.standIn').attr('id');
+  console.log(here);
   OPlocation=$('.standIn').attr('id')
 }
 
 function spawn(){                         //Creates an enemy
   startSelect()
+  console.log("Spawning!")
   OPTracker++;
-  $('#80x'+start+'0').append('<div class="standIn" id="OP'+OPTracker+'"></div>')
+  // $('#80x'+start+'0').append('<div class="standIn" id="OP'+OPTracker+'"></div>')
+  $('#80x'+start+'0').addClass('standIn');
   OPbeacon();
 }
 
@@ -201,8 +204,8 @@ function moveSelect(){
 
 function OPmovement(){
   moveSelect()
-  $('#OP1').remove()
-  $('#'+there).append('<div class="standIn" id="OP1"></div>')
+  $('#'+here).removeClass('standIn')
+  $('#'+there).addClass('standIn')
 }
 
 //Hero Rendering~~~~~~~~~~~~~~~~~~~~~~~
