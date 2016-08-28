@@ -10,6 +10,8 @@
   border: .1vw solid lightgrey;
   height:4vw;
   width:4vw;
+  max-height: 100%;
+  max-width:100%;
 }
 
 /*Helm!~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -49,6 +51,11 @@ input{
   background-color: red;
 }
 
+.impactGif{
+  background-image: url('impact.gif');
+  background-size: 100%;
+}
+
 .standIn{
   height: 1vw;
   width: 1vw;
@@ -60,6 +67,6 @@ input{
   background-image: url('turret.gif');
   height: 128px;
   width: 128px;
-  margin-left: 13.35vw;
+  margin-left: 13.25vw;
   margin-top:3.25vw;
 }
