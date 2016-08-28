@@ -56,11 +56,24 @@ input{
   background-size: 100%;
 }
 
+/*.standIn{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border: .1vw solid lightgrey;
+  height:4vw;
+  width:4vw;
+  max-height: 100%;
+  max-width:100%;
+  background-image: url('walking.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}*/
+
 .standIn{
-  height: 1vw;
-  width: 1vw;
-  border-radius: 50%;
-  background-color:green;
+  background-image: url('viral.gif');
+  background-size: 100%;
 }
 
 .turret{
