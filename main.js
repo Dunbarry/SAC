@@ -11,7 +11,7 @@ var decode=0;
 var there="";
 var token=0;
 var here=0;
-var loser=0;
+
 
 //Turn Mgt~~~~~~~~~~~~~~~~~~~~~
 function safetySwap(){            //Safety Controls
@@ -43,15 +43,8 @@ function turnSwap(){
   safetySwap();
 }
 
-// function turnState(){
-//   return turn;
-// }
 
-// function safetyState(){
-//   return safety;
-// }
-
-//UI Shiznit~~~~~~~~~~~~~~~~~~~~
+//UI Shiznit~~~~~~~~~~~~~~~~~~~~~~~~~
 function indicators(){
   if(safety==="OFF"){
     $('#bigRed').addClass('impact');
@@ -71,7 +64,6 @@ function victory(){
 function defeat(){
   OPbeacon()
   for(var loss in here){
-    console.log(loss,here[loss]);
     if(loss==="0"){
       if(here[loss]==="1"){
         alert("Server City has been infected!")
@@ -80,7 +72,8 @@ function defeat(){
   }
 }
 
-//Fire Control~~~~~~~~~~~~~~~~
+
+//Fire Control~~~~~~~~~~~~~~~~~~~~~~
 function fireClear(){
   $('#'+targetCell).removeClass('impact');
   turnSwap();
@@ -113,20 +106,24 @@ function rotationDecoder(){
   else{
     decode=code;
   }
+  if(decode.length<2){
+    decode=decode+"0";
+  }
 }
 
 $('#bigRed').click(function(){
   if(turn==="Player"){
   rotationDecoder()
   targetCell=($('#degree').val()+"x"+decode)
+  turretRotate();
   console.log(targetCell)
-  fire();
-  dmgCheck();
+  setTimeout(fire,2000);
+  setTimeout(dmgCheck,2000);
   }
 })
 
 
-//OP rendering~~~~~~~~~~~~~~~~~~
+//OP rendering~~~~~~~~~~~~~~~~~~~~
 function startSelect(){
   start=(Math.floor(Math.random()*9))
 }
@@ -134,7 +131,6 @@ function startSelect(){
 function OPbeacon(){
   here=($('.standIn').parent()).attr('id');
   OPlocation=$('.standIn').attr('id')
-  console.log(here,OPlocation)
 }
 
 function spawn(){                         //Creates an enemy
@@ -201,7 +197,6 @@ function moveSelect(){
       }
     }
   }
-  console.log(there)
 }
 
 function OPmovement(){
@@ -210,7 +205,46 @@ function OPmovement(){
   $('#'+there).append('<div class="standIn" id="OP1"></div>')
 }
 
-//DMG~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//Hero Rendering~~~~~~~~~~~~~~~~~~~~~~~
+function positionCheck(){
+  if($('.turret').hasClass('rotateLeft')){
+    $('.turret').removeClass('rotateLeft');
+    $('.turret').addClass('centerLeft')
+  }
+  else if($('.turret').hasClass('rotateRight')){
+    $('.turret').removeClass('rotateRight');
+    $('.turret').addClass('centerRight')
+  }
+}
+
+function rotateRight(){
+  $('.turret').addClass('rotateRight');
+}
+
+function rotateLeft(){
+  $('.turret').addClass('rotateLeft');
+}
+
+function turretRotate(){
+  for(var angle in targetCell){
+    if(angle==="3"){
+      if(targetCell[angle]>6){
+        positionCheck();
+        setTimeout(rotateLeft,900)
+      }
+      else if(targetCell[angle]>2&&targetCell[angle]<5){
+        positionCheck();
+        setTimeout(rotateRight,900)
+      }
+    }
+    else{
+      positionCheck();
+    }
+  }
+}
+
+
+//DMG~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function dmgCheck(){
   OPbeacon()
   if(here===targetCell){
@@ -219,7 +253,8 @@ function dmgCheck(){
   }
 }
 
-//ON load~~~~~~~~~~~~~~~~~~~~~~~
+
+//ON load~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $(document).ready(function(){
   var row=8
   while(row>0){
@@ -238,23 +273,3 @@ $(document).ready(function(){
     row--;
   }
 })
-
-// <div class="col-md-1" id="'+row+'0x-40">'+row+'0x-4<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x-30">'+row+'0x-3<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x-20">'+row+'0x-2<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x-10">'+row+'0x-1<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x-00">'+row+'0x0<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x10">'+row+'0x1<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x20">'+row+'0x2<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x30">'+row+'0x3<div></div></div>\
-// <div class="col-md-1" id="'+row+'0x40">'+row+'0x4<div></div></div>\
-
-// <div class="col-md-1" id="'+row+'0x-40">'+row+'0x-4</div>\
-// <div class="col-md-1" id="'+row+'0x-30">'+row+'0x-3</div>\
-// <div class="col-md-1" id="'+row+'0x-20">'+row+'0x-2</div>\
-// <div class="col-md-1" id="'+row+'0x-10">'+row+'0x-1</div>\
-// <div class="col-md-1" id="'+row+'0x-00">'+row+'0x0</div>\
-// <div class="col-md-1" id="'+row+'0x10">'+row+'0x1</div>\
-// <div class="col-md-1" id="'+row+'0x20">'+row+'0x2</div>\
-// <div class="col-md-1" id="'+row+'0x30">'+row+'0x3</div>\
-// <div class="col-md-1" id="'+row+'0x40">'+row+'0x4</div>\
