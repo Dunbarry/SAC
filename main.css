@@ -1,4 +1,5 @@
 .mainContain{
+  margin-top: 3vw;
   margin-left: 30%;
 }
 
@@ -53,4 +54,12 @@ input{
   width: 1vw;
   border-radius: 50%;
   background-color:green;
+}
+
+.turret{
+  background-image: url('turret.gif');
+  height: 128px;
+  width: 128px;
+  margin-left: 13.35vw;
+  margin-top:3.25vw;
 }
