@@ -9,7 +9,9 @@ var OPLocation="";
 var Level=1;
 var decode=0;
 var there="";
-
+var token=0;
+var here=0;
+var loser=0;
 
 //Turn Mgt~~~~~~~~~~~~~~~~~~~~~
 function safetySwap(){            //Safety Controls
@@ -23,7 +25,7 @@ function safetySwap(){            //Safety Controls
 }
 
 function turnSwap(){
-  turnCount++;            //Turn Controls
+  turnCount++;                    //Turn Controls
   if(turn==="Player"){
     turn="OP";
     setTimeout(turnSwap,4000)
@@ -31,7 +33,8 @@ function turnSwap(){
       spawn();
     }
     else if(turnCount>=2){
-      OPmovement();
+      defeat();
+      setTimeout(OPmovement,2000);
     }
   }
   else if(turn==="OP"){
@@ -47,6 +50,35 @@ function turnSwap(){
 // function safetyState(){
 //   return safety;
 // }
+
+//UI Shiznit~~~~~~~~~~~~~~~~~~~~
+function indicators(){
+  if(safety==="OFF"){
+    $('#bigRed').addClass('impact');
+  }
+  else if(safety==="ON"){
+    $('#bigRed').removeClass('impact');
+  }
+}
+
+function victory(){
+  token++;
+  if(token===OPTracker){
+    alert("Server City is safe once again!")
+  }
+}
+
+function defeat(){
+  OPbeacon()
+  for(var loss in here){
+    console.log(loss,here[loss]);
+    if(loss==="0"){
+      if(here[loss]==="1"){
+        alert("Server City has been infected!")
+      }
+    }
+  }
+}
 
 //Fire Control~~~~~~~~~~~~~~~~
 function fireClear(){
@@ -89,19 +121,9 @@ $('#bigRed').click(function(){
   targetCell=($('#degree').val()+"x"+decode)
   console.log(targetCell)
   fire();
+  dmgCheck();
   }
 })
-
-
-//UI Shiznit~~~~~~~~~~~~~~~~~~~~
-function indicators(){
-  if(safety==="OFF"){
-    $('#bigRed').addClass('impact');
-  }
-  else if(safety==="ON"){
-    $('#bigRed').removeClass('impact');
-  }
-}
 
 
 //OP rendering~~~~~~~~~~~~~~~~~~
@@ -112,11 +134,10 @@ function startSelect(){
 function OPbeacon(){
   here=($('.standIn').parent()).attr('id');
   OPlocation=$('.standIn').attr('id')
-  for(var seek in here){
-  }
+  console.log(here,OPlocation)
 }
 
-function spawn(){                 //Creates an enemy
+function spawn(){                         //Creates an enemy
   startSelect()
   OPTracker++;
   $('#80x'+start+'0').append('<div class="standIn" id="OP'+OPTracker+'"></div>')
@@ -125,12 +146,11 @@ function spawn(){                 //Creates an enemy
 
 function moveSelect(){
   there="";
-  direction=(Math.floor(Math.random()*5))
+  direction=(Math.floor(Math.random()*7))
   OPbeacon();
-  console.log(direction,here);
   for(var choosing=0;choosing<here.length; choosing++){
     next=choosing+1;
-    if(direction>2||direction===1){             //Advancing one grid! x3 Likely
+    if(direction>2||direction===1){         //Advancing one grid! x5 Likely
       if(choosing===0){
         newHeading=here[choosing]-1;
         there+=newHeading;
@@ -139,7 +159,7 @@ function moveSelect(){
         there+=here[choosing]
       }
     }
-    else if(direction===2){      //Moving Right!
+    else if(direction===2){                 //Moving Right!
       if(choosing===3){
         if(here[choosing]===5){
           newHeading=0;
@@ -161,7 +181,7 @@ function moveSelect(){
         there+=here[choosing]
       }
     }
-    else if(direction===0){     //Moving Left!
+    else if(direction===0){                 //Moving Left!
       if(choosing===3){
         if(here[choosing]===0){
           newHeading=(here[choosing]-0)+1;
@@ -188,6 +208,15 @@ function OPmovement(){
   moveSelect()
   $('#OP1').remove()
   $('#'+there).append('<div class="standIn" id="OP1"></div>')
+}
+
+//DMG~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function dmgCheck(){
+  OPbeacon()
+  if(here===targetCell){
+    $('#OP1').remove();
+    victory();
+  }
 }
 
 //ON load~~~~~~~~~~~~~~~~~~~~~~~
