@@ -1,3 +1,26 @@
+.splashCurtain{
+  background-color: black;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  -webkit-transition: opacity 2s;
+}
+
+.speechBox{
+  position:absolute;
+  height:10vw;
+  width:20vw;
+  background-color: transparent;
+  border: .25vw solid grey;
+  border-radius: 2em;
+  top:45%;
+  left:7.5%;
+  opacity: 0;
+  z-index:20;
+}
+
 /*HUD~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .mainContain{
   margin:0;
@@ -9,7 +32,7 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  border: .1vw solid lightgrey;
+  /*border: .1vw solid lightgrey;*/
   height:4vw;
   width:4vw;
   max-height: 100%;
@@ -102,6 +125,23 @@ input{
   border-radius:50%
 }
 
+/*.speakerContain{
+  position: absolute;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:6vw;
+  width:8vw;
+  background-color: blue;
+  top:5vw;
+  margin-left:10vw;
+}
+
+.speaker{
+  height: auto;
+  width:2vw;
+}*/
+
 /*Game Board~~~~~~~~~~~~~~~~~~~~~~~~*/
 .impact{
   background-color: red;
@@ -115,7 +155,7 @@ input{
 }
 
 .standIn{
-  background-image: url('viral.gif');
+  background-image: url('walking.gif');
   background-size: 100%;
 }
 
