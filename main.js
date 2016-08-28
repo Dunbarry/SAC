@@ -75,13 +75,13 @@ function defeat(){
 
 //Fire Control~~~~~~~~~~~~~~~~~~~~~~
 function fireClear(){
-  $('#'+targetCell).removeClass('impact');
+  $('#'+targetCell).removeClass('impactGif');
   turnSwap();
 }
 
 function fire(){
-  $('#'+targetCell).addClass('impact');
-  setTimeout(fireClear,5000)
+  $('#'+targetCell).addClass('impactGif');
+  setTimeout(fireClear,1300)
 }
 
 function rotationDecoder(){
@@ -117,13 +117,13 @@ $('#bigRed').click(function(){
   targetCell=($('#degree').val()+"x"+decode)
   turretRotate();
   console.log(targetCell)
-  setTimeout(fire,2000);
+  setTimeout(fire,2500);
   setTimeout(dmgCheck,2000);
   }
 })
 
 
-//OP rendering~~~~~~~~~~~~~~~~~~~~
+//OP rendering~~~~~~~~~~~~~~~~~~~~~
 function startSelect(){
   start=(Math.floor(Math.random()*9))
 }
@@ -146,7 +146,7 @@ function moveSelect(){
   OPbeacon();
   for(var choosing=0;choosing<here.length; choosing++){
     next=choosing+1;
-    if(direction>2||direction===1){         //Advancing one grid! x5 Likely
+    if(direction>2||direction===1){        //Advancing one grid! x5 Likely
       if(choosing===0){
         newHeading=here[choosing]-1;
         there+=newHeading;
