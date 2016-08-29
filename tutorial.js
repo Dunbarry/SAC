@@ -1,3 +1,4 @@
+var tutorCount=0;
 var progressor=0;
 var splashText='<p>Once, they were legion. The Threatfire Corps, feared by any who dared set their sights on the radiant city\'s of the Amiga Plateau. With a specialized suite of syntactic weapons, they were the only line of defense against the invasion of the Virals: An ever evolving race of plague bearing mutants and hack-born devourers. But the people of Amiga grew complacent, and the rise of the corporations saw new, privatized protectors for every man, woman and child. If they could afford it.</p><p>Unsupported, the Threatfire Corp continued to serve the people. And, one by one, they grew outdated. Or, unwilling to leave their posts, now stand watch over un-updated and abandoned cities. Ever vigilant, even in exile.</p><p>Now, the threat of the ever-changing Virals has returned...</p><p>Will you protect Server City from infection and degradation? Or will one more of Amiga plateau\'s jewels be swallowed by this foul scourge?</p><h1>Siege @ Server City.</p>'
 
@@ -32,10 +33,13 @@ function talking(){
 }
 
 $(document).on('click', '.splashCurtain', function(){
+  if(tutorCount===0){
   $('.text').remove();
   talking();
   tutorial(tutorial1);
   $('.speechBox').append('<div class="arrow" id="next"></div>');
+  }
+  tutorCount++;
 })
 
 $(document).on('click', '#next', function(){

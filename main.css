@@ -29,6 +29,10 @@ body{
   z-index: 100;
 }
 
+.splashCurtain:hover{
+  cursor: pointer
+}
+
 .speechBox{
   position:absolute;
   height:auto;
