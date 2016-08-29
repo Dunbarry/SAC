@@ -1,0 +1,211 @@
+body{
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.text{
+  position: absolute;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding-left: 5vw;
+  height: 50vw;
+  width: 50vw;
+  background-color: black;
+  color: white;
+  z-index: 101
+}
+
+.splashCurtain{
+  background-color: black;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  -webkit-transition: opacity 2s;
+  z-index: 100;
+}
+
+.splashCurtain:hover{
+  cursor: pointer
+}
+
+.speechBox{
+  position:absolute;
+  height:auto;
+  width:25vw;
+  background-color: transparent;
+  color: lightblue;
+  border: .25vw solid grey;
+  border-radius: 2em;
+  padding:1em;
+  top:15%;
+  left:7.5%;
+  opacity: 0;
+  z-index:101;
+}
+
+.arrow{
+  height:0;
+  width:0;
+  float:right;
+  /*background-color: blue;*/
+  border-top: 1.5vw solid transparent;
+  border-bottom: 1.5vw solid transparent;
+  border-left: 3vw solid blue;
+}
+
+.arrow:hover{
+  cursor: pointer;
+}
+
+/*HUD~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.mainContain{
+  margin:0;
+  margin-top: 3vw;
+  margin-left: 30%;
+}
+
+.col-md-1{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /*border: .1vw solid lightgrey;*/
+  height:4vw;
+  width:4vw;
+  max-height: 100%;
+  max-width:100%;
+}
+
+.hudFrameL{
+  position:fixed;
+  bottom:0;
+  left:0;
+  height:15vw;
+  width:25vw;
+  background-color:lightblue;
+  border-top-right-radius:70%;
+  border-top: .5vw ridge lightblue;
+  border-right: .5vw ridge lightblue;
+  opacity:.9;
+}
+
+.hudFrameR{
+  position:fixed;
+  bottom:0;
+  right:0;
+  height:15vw;
+  width:30vw;
+  background-color:lightblue;
+  border-top-left-radius:70%;
+  border-top: .5vw ridge lightblue;
+  border-left: .5vw ridge lightblue;
+  opacity:.9;
+}
+
+.fireControl{
+  position:absolute;
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
+  /*border: .25vw solid red;*/
+  top:35%;
+  margin-left: 25%;
+  height: 8vw;
+  width:10vw;
+  border-radius: 2em;
+  opacity: 1;
+}
+
+.degreeTag{
+  border: .25vw ridge lightblue;
+  background-color: lightgrey;
+  color:blue;
+  height:auto;
+  font-size: 1em;
+  margin-bottom:5.5vw;
+  padding-bottom:1.25em;
+  padding-left: .25em;
+  margin-left: .5vw;
+  /*line-height: .55em;*/
+}
+
+.rotationTag{
+  border: .25vw ridge lightblue;
+  background-color: lightgrey;
+  color:blue;
+  height:auto;
+  font-size: 1em;
+  /*margin-bottom:5vw;*/
+  padding-bottom:1.25em;
+  padding-left: .25em;
+  margin-left: .5vw;
+}
+
+input{
+  display: flex;
+  display: inline;
+  margin-left: 1.25vw;
+  margin-bottom: .25vw;
+  height:1.30vw;
+  background-color: transparent;
+}
+
+.bigRed{
+  position:absolute;
+  display:flex;
+  display: block;
+  height:5vw;
+  width:5vw;
+  top:12%;
+  margin-left:2.5vw;
+  border-radius:50%;
+  opacity: .9;
+}
+
+/*.speakerContain{
+  position: absolute;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:6vw;
+  width:8vw;
+  background-color: blue;
+  top:5vw;
+  margin-left:10vw;
+}
+
+.speaker{
+  height: auto;
+  width:2vw;
+}*/
+
+/*Game Board~~~~~~~~~~~~~~~~~~~~~~~~*/
+.impact{
+  background-color: red;
+  color:black;
+  opacity: 1;
+}
+
+.impactGif{
+  background-image: url('impact.gif');
+  background-size: 100%;
+}
+
+.standIn{
+  background-image: url('walking.gif');
+  background-size: 100%;
+}
+
+.turret{
+  background-image: url('turret.gif');
+  height: 128px;
+  width: 128px;
+  margin-left: 13.25vw;
+  margin-top:3.25vw;
+  z-index: 10;
+}
