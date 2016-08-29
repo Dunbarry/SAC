@@ -6,19 +6,36 @@
   height:100%;
   width:100%;
   -webkit-transition: opacity 2s;
+  z-index: 100;
 }
 
 .speechBox{
   position:absolute;
-  height:10vw;
-  width:20vw;
+  height:auto;
+  width:25vw;
   background-color: transparent;
+  color: lightblue;
   border: .25vw solid grey;
   border-radius: 2em;
-  top:45%;
+  padding:1em;
+  top:15%;
   left:7.5%;
   opacity: 0;
-  z-index:20;
+  z-index:101;
+}
+
+.arrow{
+  height:0;
+  width:0;
+  float:right;
+  /*background-color: blue;*/
+  border-top: 1.5vw solid transparent;
+  border-bottom: 1.5vw solid transparent;
+  border-left: 3vw solid blue;
+}
+
+.arrow:hover{
+  cursor: pointer;
 }
 
 /*HUD~~~~~~~~~~~~~~~~~~~~~~~~~*/
