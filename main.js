@@ -237,7 +237,7 @@ function positionCheck(){
     $('.turret').removeClass('rotateRight');
     $('.turret').addClass('centerRight')
   }
-  setTimeout(centerClear,900);
+  setTimeout(rotateClear,900);
 }
 
 function rotateRight(){
