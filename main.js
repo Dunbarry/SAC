@@ -1,4 +1,4 @@
-console.log('Drone Online');
+// console.log('Drone Online');
 var targetCell="";
 var turn="Player"
 var safety="OFF"
@@ -28,7 +28,7 @@ function turnSwap(){
   turnCount++;                    //Turn Controls
   if(turn==="Player"){
     turn="OP";
-    setTimeout(turnSwap,4000)
+    setTimeout(turnSwap,3000)
     if(turnCount===1){
       spawn();
     }
@@ -54,10 +54,20 @@ function indicators(){
   }
 }
 
+function winPage(){
+  $('body').append('<div class="splashCurtain"></div>')
+  $('.splashCurtain').append('<div class="text"><h1>You have defended Server City!</h1><h1>You Win!</h1></div>')
+}
+
+function losePage(){
+  $('body').append('<div class="splashCurtain"></div>')
+  $('.splashCurtain').append('<div class="text"><h1>Server city has been infected...</h1><h1>You Lose</h1></div>')
+}
+
 function victory(){
   token++;
   if(token===OPTracker){
-    alert("Server City is safe once again!")
+    setTimeout(winPage,5000);
   }
 }
 
@@ -66,7 +76,7 @@ function defeat(){
   for(var loss in here){
     if(loss==="0"){
       if(here[loss]==="1"){
-        alert("Server City has been infected!")
+        setTimeout(losePage,3000);
       }
     }
   }
@@ -76,12 +86,15 @@ function defeat(){
 //Fire Control~~~~~~~~~~~~~~~~~~~~~~
 function fireClear(){
   $('#'+targetCell).removeClass('impactGif');
+  $('.turret').css('background-image','url(turret.gif)');
   turnSwap();
 }
 
 function fire(){
   $('#'+targetCell).addClass('impactGif');
+  $('.turret').css('background-image','url(firing.gif)');
   setTimeout(fireClear,1300)
+  setTimeout(dmgCheck,1400)
 }
 
 function rotationDecoder(){
@@ -111,25 +124,14 @@ function rotationDecoder(){
   }
 }
 
-// $('#bigRed').click(function(){
-//   console.log(firing);
-//   if(turn==="Player"){
-//   rotationDecoder()
-//   targetCell=($('#degree').val()+"x"+decode)
-//   turretRotate();
-//   console.log(targetCell)
-//   setTimeout(fire,2500);
-//   setTimeout(dmgCheck,2000);
-//   }
-// })
-
 $(document).on('click','#bigRed', function(){
-  if(turn==="Player"){
+  if(safety==="OFF"){
   rotationDecoder()
   targetCell=($('#degree').val()+"x"+decode)
   turretRotate();
-  setTimeout(fire,2500);
-  setTimeout(dmgCheck,2000);
+  setTimeout(fire,1500);
+  setTimeout(positionCheck,4000)
+  setTimeout(rotateClear,5000);
   }
 })
 
@@ -153,7 +155,6 @@ function spawn(){                         //Creates an enemy
 
 function moveSelect(){
   there="";
-  console.log("Turning!")
   direction=(Math.floor(Math.random()*7))
   OPbeacon();
   for(var choosing=0;choosing<here.length; choosing++){
@@ -218,6 +219,15 @@ function OPmovement(){
 }
 
 //Hero Rendering~~~~~~~~~~~~~~~~~~~~~~~
+function rotateClear(){
+  if($('.turret').hasClass('centerRight')){
+    $('.turret').removeClass('centerRight');
+  }
+  else if($('.turret').hasClass('centerLeft')){
+    $('.turret').removeClass('centerLeft');
+  }
+}
+
 function positionCheck(){
   if($('.turret').hasClass('rotateLeft')){
     $('.turret').removeClass('rotateLeft');
@@ -227,6 +237,7 @@ function positionCheck(){
     $('.turret').removeClass('rotateRight');
     $('.turret').addClass('centerRight')
   }
+  setTimeout(centerClear,900);
 }
 
 function rotateRight(){
@@ -241,16 +252,13 @@ function turretRotate(){
   for(var angle in targetCell){
     if(angle==="3"){
       if(targetCell[angle]>6){
-        positionCheck();
-        setTimeout(rotateLeft,900)
+        rotateLeft()
       }
       else if(targetCell[angle]>2&&targetCell[angle]<5){
-        positionCheck();
-        setTimeout(rotateRight,900)
+        rotateRight()
       }
     }
     else{
-      positionCheck();
     }
   }
 }
@@ -260,7 +268,9 @@ function turretRotate(){
 function dmgCheck(){
   OPbeacon()
   if(here===targetCell){
-    $('#OP1').remove();
+    $('#'+targetCell).addClass('impactGif');
+    $('.standIn').remove();
+    $('#'+targetCell).addClass('impactGif');
     victory();
   }
 }
