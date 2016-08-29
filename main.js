@@ -111,12 +111,23 @@ function rotationDecoder(){
   }
 }
 
-$('#bigRed').click(function(){
+// $('#bigRed').click(function(){
+//   console.log(firing);
+//   if(turn==="Player"){
+//   rotationDecoder()
+//   targetCell=($('#degree').val()+"x"+decode)
+//   turretRotate();
+//   console.log(targetCell)
+//   setTimeout(fire,2500);
+//   setTimeout(dmgCheck,2000);
+//   }
+// })
+
+$(document).on('click','#bigRed', function(){
   if(turn==="Player"){
   rotationDecoder()
   targetCell=($('#degree').val()+"x"+decode)
   turretRotate();
-  console.log(targetCell)
   setTimeout(fire,2500);
   setTimeout(dmgCheck,2000);
   }
@@ -130,21 +141,19 @@ function startSelect(){
 
 function OPbeacon(){
   here=$('.standIn').attr('id');
-  console.log(here);
   OPlocation=$('.standIn').attr('id')
 }
 
 function spawn(){                         //Creates an enemy
   startSelect()
-  console.log("Spawning!")
   OPTracker++;
-  // $('#80x'+start+'0').append('<div class="standIn" id="OP'+OPTracker+'"></div>')
   $('#80x'+start+'0').addClass('standIn');
   OPbeacon();
 }
 
 function moveSelect(){
   there="";
+  console.log("Turning!")
   direction=(Math.floor(Math.random()*7))
   OPbeacon();
   for(var choosing=0;choosing<here.length; choosing++){
@@ -263,15 +272,15 @@ $(document).ready(function(){
   while(row>0){
   $('#'+row).append(
     '<div class="row">\
-    <div class="col-md-1" id="'+row+'0x80"></div>\
-    <div class="col-md-1" id="'+row+'0x70"></div>\
-    <div class="col-md-1" id="'+row+'0x60"></div>\
-    <div class="col-md-1" id="'+row+'0x50"></div>\
-    <div class="col-md-1" id="'+row+'0x00"></div>\
-    <div class="col-md-1" id="'+row+'0x10"></div>\
-    <div class="col-md-1" id="'+row+'0x20"></div>\
-    <div class="col-md-1" id="'+row+'0x30"></div>\
-    <div class="col-md-1" id="'+row+'0x40"></div>\
+      <div class="col-md-1" id="'+row+'0x80"></div>\
+      <div class="col-md-1" id="'+row+'0x70"></div>\
+      <div class="col-md-1" id="'+row+'0x60"></div>\
+      <div class="col-md-1" id="'+row+'0x50"></div>\
+      <div class="col-md-1" id="'+row+'0x00"></div>\
+      <div class="col-md-1" id="'+row+'0x10"></div>\
+      <div class="col-md-1" id="'+row+'0x20"></div>\
+      <div class="col-md-1" id="'+row+'0x30"></div>\
+      <div class="col-md-1" id="'+row+'0x40"></div>\
     </div>')
     row--;
   }
