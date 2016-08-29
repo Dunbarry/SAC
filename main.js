@@ -76,11 +76,13 @@ function defeat(){
 //Fire Control~~~~~~~~~~~~~~~~~~~~~~
 function fireClear(){
   $('#'+targetCell).removeClass('impactGif');
+  $('.turret').css('background-image','url(turret.gif)');
   turnSwap();
 }
 
 function fire(){
   $('#'+targetCell).addClass('impactGif');
+  $('.turret').css('background-image','url(firing.gif)');
   setTimeout(fireClear,1300)
 }
 
@@ -242,11 +244,11 @@ function turretRotate(){
     if(angle==="3"){
       if(targetCell[angle]>6){
         positionCheck();
-        setTimeout(rotateLeft,900)
+        rotateLeft()
       }
       else if(targetCell[angle]>2&&targetCell[angle]<5){
         positionCheck();
-        setTimeout(rotateRight,900)
+        rotateRight()
       }
     }
     else{

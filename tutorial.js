@@ -1,14 +1,6 @@
 var progressor=0;
-// var splashText='<p>Once, they were legion. The Threatfire Corp, feared by any who dared set their sights on the radiant\
-// citits of the Amiga Plateau. With a specialized suite of syntactic weapons, they were the only line of defense against the invasion of the Virals: An ever evolving race of plague bearing mutants and hack-born devourers. But the people of Amiga grew complacent, and the rise of the corporations saw new, privatized protectors for every man, woman and child. If they\
-// could afford it.</p>\
-//
-// <p>Unsupported, the Threatfire Corp continued to serve the people. And, one by one, they grew outdated. Or, unwilling to\
-// leave their posts, now stand watch over un-updated and abandoned cities. Ever vigilant, even in exile.</p>\
-//
-// <p>Now, the threat of the ever-changing Virals has returned...</p>\
-//
-// <p>Will you protect Server City from infection and degradation? Or will one more of Amiga plateau\'s jewels be swallowed by this foul scourge?</p>'
+var splashText='<p>Once, they were legion. The Threatfire Corp, feared by any who dared set their sights on the radiant\
+citits of the Amiga Plateau. With a specialized suite of syntactic weapons, they were the only line of defense against the invasion of the Virals: An ever evolving race of plague bearing mutants and hack-born devourers. But the people of Amiga grew complacent, and the rise of the corporations saw new, privatized protectors for every man, woman and child. If they could afford it.</p><p>Unsupported, the Threatfire Corp continued to serve the people. And, one by one, they grew outdated. Or, unwilling to leave their posts, now stand watch over un-updated and abandoned cities. Ever vigilant, even in exile.</p><p>Now, the threat of the ever-changing Virals has returned...</p><p>Will you protect Server City from infection and degradation? Or will one more of Amiga plateau\'s jewels be swallowed by this foul scourge?</p><h1>Siege @ Server City.</p>'
 
 var tutorial1='<p>"Captian? Captain CyberHawke? Are you there? Oh! Thank the Mother Board! I thought we\'d lost you too!"</p>'
 
@@ -28,6 +20,8 @@ function hereWeGo(){
 
 function curtainDraw(){
   $('.splashCurtain').css('opacity','0')
+  $('.speechBox').css('color','white')
+  $('.speechBox').css('background-color','lightblue')
 }
 
 function tutorial(text){
@@ -40,6 +34,7 @@ function talking(){
 
 $(document).on('click', '.splashCurtain', function(){
   console.log("Drone Online.")
+  $('.text').remove();
   talking();
   tutorial(tutorial1);
   $('.speechBox').append('<div class="arrow" id="next"></div>');

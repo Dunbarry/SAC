@@ -1,3 +1,23 @@
+body{
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.text{
+  position: absolute;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding-left: 5vw;
+  height: 50vw;
+  width: 50vw;
+  background-color: black;
+  color: white;
+  z-index: 101
+}
+
 .splashCurtain{
   background-color: black;
   position:absolute;
@@ -66,7 +86,7 @@
   border-top-right-radius:70%;
   border-top: .5vw ridge lightblue;
   border-right: .5vw ridge lightblue;
-  opacity:.75;
+  opacity:.9;
 }
 
 .hudFrameR{
@@ -79,7 +99,7 @@
   border-top-left-radius:70%;
   border-top: .5vw ridge lightblue;
   border-left: .5vw ridge lightblue;
-  opacity:.75;
+  opacity:.9;
 }
 
 .fireControl{
@@ -137,9 +157,10 @@ input{
   display: block;
   height:5vw;
   width:5vw;
-  top:9%;
+  top:12%;
   margin-left:2.5vw;
-  border-radius:50%
+  border-radius:50%;
+  opacity: .9;
 }
 
 /*.speakerContain{
